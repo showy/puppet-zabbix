@@ -1,0 +1,3 @@
+class zabbix::controller {
+
+}
