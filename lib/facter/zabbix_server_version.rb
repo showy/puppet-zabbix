@@ -13,7 +13,7 @@ Facter.add("zabbix_server_version") do
 				end
 			end
 			# If I have come this far, then is something wrong
-			facter_result
+			facter_result ||= undefined_version
 		end
 	end
 end
