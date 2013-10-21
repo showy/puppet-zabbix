@@ -1,4 +1,4 @@
-class zabbix::server {
+class puppet-zabbix::server {
 	# This class provider install a zabbix server for debian wheezy
 	case $lsbdistcodename {
 		/(?i:debian): {

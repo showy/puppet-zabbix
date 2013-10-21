@@ -1,4 +1,4 @@
-class zabbix::agent {
+class puppet-zabbix::agent {
 	case $lsbdistcodename {
 		/(?i:debian)/: {
 			$zabbix_pkgs = [ 'zabbix-agent']

@@ -1,4 +1,4 @@
-class zabbix::credentials {
+class puppet-zabbix::credentials {
 	define instance($dirname="/root/",$username,$password) {
 		file { "$dirname/$name":
 			ensure => file,

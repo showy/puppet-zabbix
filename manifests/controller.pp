@@ -1,3 +1,3 @@
-class zabbix::controller {
+class puppet-zabbix::controller {
 
 }
