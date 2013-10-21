@@ -1,3 +1,3 @@
-class zabbix::zabbix_host {
+class puppet-zabbix::zabbix_host {
 
 }
