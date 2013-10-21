@@ -1,11 +1,12 @@
-class zabbix::credentials(
-	$credentials_file="/root/zabbix_credentials_${credentials_instance}.yml",
-	$credentials_instance='default'
-	) {
-	file { "${credentials_file}":
+class zabbix::credentials {
+	define instance($dirname="/root/",$username,$password) {
+		file { "$dirname/$name":
 			ensure => file,
 			owner	=> 'root',
 			group   => 'root',
+			mode	=> 0640,
 			content	=> template('zabbix/credentials.erb'),
-		}	
+			replace	=> true,
+		}
+	}	
 }
