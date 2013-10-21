@@ -5,7 +5,7 @@ class puppet-zabbix::credentials {
 			owner	=> 'root',
 			group   => 'root',
 			mode	=> 0640,
-			content	=> template('zabbix/credentials.erb'),
+			content	=> template('puppet-zabbix/credentials.erb'),
 			replace	=> true,
 		}
 	}	
