@@ -1,0 +1,6 @@
+<% if @zabbix_file_headers -%>
+<%= @zabbix_file_headers %>
+<% elsif @file_headers -%>
+<%= @file_headers %>
+<% end -%>
+deb	<%= [ @zabbix_repo_url , @lsbdistcodename , @zabbix_repo_sections ].flatten.join(" ") %>

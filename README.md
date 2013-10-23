@@ -1,13 +1,28 @@
 puppet-zabbix
 =============
 
-Implementin 3 classes:
- - Server
- - Agent
- - Credentials
- - Controoler 
+This module manage the individial components in a zabbix environment. 
+Manifests
+ - settings.pp
+ 	General settings.
 
- Zabbix credentials are kept in a separate class for it can be applied to proxy servers
- or another server not really using zabbix at all.
+ - base.pp
+ 	Maintain zabbix repositories
 
+ - agent.pp
+ 	Manage zabbix-agent
+
+ - server.pp
+ 	Manager zabbix-server
+
+ - controller.pp
+ 	Manage a zabbix host instance in the monitoring system
+
+ - api_connection.pp
+ 	Save a file with the credentials to access de zabbix api in a designated server
+
+Dependencies
+
+ - settings.pp -> base.pp -> agent.pp
+ - settings.pp -> base.pp -> server.pp
  
