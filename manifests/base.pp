@@ -1,11 +1,11 @@
-class puppet-zabbix::base inherits puppet-zabbix::settings {
+class puppet-zabbix::base($zabbix_agent_version='latest') inherits puppet-zabbix::settings {
 	# Ordering
 	Class["puppet-zabbix::settings"] -> Class["puppet-zabbix::base"]
 
 	define package_installer(){
 		if (!defined(Package[$name])) {
 			package { "$name":
-				ensure => latest,
+				ensure => $zabbix_agent_version,
 			}
 		}
 	}
