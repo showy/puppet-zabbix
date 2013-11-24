@@ -40,7 +40,7 @@ class puppet-zabbix::base inherits puppet-zabbix::settings {
 		} ~>
 
 		exec { "zabbix aptitude update":
-			command		=> "aptitude upate",
+			command		=> "aptitude update",
 			path		=> "/bin:/sbin:/usr/bin:/usr/sbin",
 			refreshonly	=> true,
 		}
