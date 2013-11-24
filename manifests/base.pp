@@ -14,7 +14,7 @@ class puppet-zabbix::base inherits puppet-zabbix::settings {
 		case $operatingsystem {
 			/(?i:debian)/: {
 				case $lsbdistcodename {
-					/(?i:wheezy)/: {
+					/(?i:wheezy|squeeze)/: {
 						$packages = [ "curl"] # This package list is required by resources in this file
 						$zabbix_repo_file_erb = "debian_repo_file.erb"
 					}
