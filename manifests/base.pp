@@ -4,8 +4,14 @@ class puppet-zabbix::base($zabbix_agent_version='latest') inherits puppet-zabbix
 
 	define package_installer(){
 		if (!defined(Package[$name])) {
-			package { "$name":
-				ensure => $zabbix_agent_version,
+			if ($name = 'zabbix-agent') {
+				package { $name:
+					ensure => $zabbix_agent_version,
+				}
+			else {
+				package { "$name":
+					ensure => install,
+				}
 			}
 		}
 	}
