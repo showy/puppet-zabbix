@@ -1,7 +1,7 @@
 <% if @zabbix_file_headers -%>
-<%= @zabbix_file_headers %>
+	<%= @zabbix_file_headers %>
 <% elsif @file_headers -%>
-<%= @file_headers %>
+	<%= @file_headers %>
 <% end -%>
 
 # This is a config file for the Zabbix agent daemon (Unix)
@@ -26,7 +26,7 @@ PidFile=/var/run/zabbix/zabbix_agentd.pid
 # Default:
 # LogFile=
 
-LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFile=/var/log/zabbix-agent/zabbix_agentd.log
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.
@@ -216,16 +216,15 @@ Hostname=Zabbix server
 
 ### Option: Include
 #	You may include individual files or all files in a directory in the configuration file.
-#	Installing Zabbix will create include directory in /usr/local/etc, unless modified during the compile time.
+#	Installing Zabbix will create include directory in /etc/zabbix, unless modified during the compile time.
 #
 # Mandatory: no
 # Default:
 # Include=
 
-Include=/etc/zabbix/zabbix_agentd.d/
-
-# Include=/usr/local/etc/zabbix_agentd.userparams.conf
-# Include=/usr/local/etc/zabbix_agentd.conf.d/
+# Include=/etc/zabbix/zabbix_agentd.userparams.conf
+# Include=/etc/zabbix/zabbix_agentd.conf.d/
+Include=/etc/zabbix/zabbix_agentd.conf.d/
 
 ####### USER-DEFINED MONITORED PARAMETERS #######
 
