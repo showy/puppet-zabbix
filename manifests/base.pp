@@ -10,7 +10,7 @@ class puppet-zabbix::base($zabbix_agent_version='latest') inherits puppet-zabbix
 				}
 			} else {
 				package { "$name":
-					ensure => install,
+					ensure => present,
 				}
 			}
 		}
