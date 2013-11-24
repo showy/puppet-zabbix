@@ -1,4 +1,10 @@
-class puppet-zabbix::agent($zabbix_servers,$zabbix_agent_version='latest') inherits puppet-zabbix::base {
+class puppet-zabbix::agent(	$zabbix_servers,
+				$zabbix_agent_version='latest',
+				$zabbix_repo_key_param="http://repo.zabbix.com/zabbix-official-repo.key",
+                                $zabbix_repo_url_param="http://repo.zabbix.com/zabbix/2.0/debian/",
+                                $zabbix_repo_sections_param=[ "main", "contrib","non-free"],
+                                $zabbix_repo_file_param="/etc/apt/sources.list.d/zabbix_repo.list"
+) inherits puppet-zabbix::base {
 	# Include priority classes
 	Class["puppet-zabbix::settings"]->
 	Class["puppet-zabbix::base"]->
