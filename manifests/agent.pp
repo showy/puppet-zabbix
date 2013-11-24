@@ -18,7 +18,7 @@ class puppet-zabbix::agent($zabbix_servers) inherits puppet-zabbix::base {
 				$zabbix_agentd_service_pattern = 'zabbix_agentd'
 				$zabbix_agentd_service_hasstatus = false
 				$zabbix_agentd_service_name = 'zabbix-agent'
-			},
+			}
 			/(?i:squeeze)/: {
 				$packages = [ 'zabbix-agent' ]
 				$zabbix_agentd_cfg = '/etc/zabbix/zabbix_agentd.conf'
