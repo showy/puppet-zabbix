@@ -1,4 +1,4 @@
-class puppet-zabbix::agent($zabbix_servers) inherits puppet-zabbix::base {
+class puppet-zabbix::agent($zabbix_servers,$zabbix_agent_version='latest') inherits puppet-zabbix::base {
 	# Include priority classes
 	Class["puppet-zabbix::settings"]->
 	Class["puppet-zabbix::base"]->
