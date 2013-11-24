@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class puppet-zabbix::server inherits puppet-zabbix::base {
 	# Ensure ordering
 	Class["puppet-zabbix::settings"] ->
