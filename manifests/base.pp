@@ -3,7 +3,7 @@ class puppet-zabbix::base inherits puppet-zabbix::settings {
 	Class["puppet-zabbix::settings"] -> Class["puppet-zabbix::base"]
 
 	define package_installer(){
-		if (!defined($name)) {
+		if (!defined(Package[$name])) {
 			package { "$name":
 				ensure => installed,
 			}
