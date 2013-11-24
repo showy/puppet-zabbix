@@ -5,7 +5,7 @@ class puppet-zabbix::base inherits puppet-zabbix::settings {
 	define package_installer(){
 		if (!defined(Package[$name])) {
 			package { "$name":
-				ensure => installed,
+				ensure => latest,
 			}
 		}
 	}
