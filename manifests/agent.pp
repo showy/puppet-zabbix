@@ -1,14 +1,15 @@
-class puppet-zabbix::agent(	$zabbix_servers,
-				$zabbix_agent_version='latest',
-				$zabbix_repo_key_param="http://repo.zabbix.com/zabbix-official-repo.key",
-                                $zabbix_repo_url_param="http://repo.zabbix.com/zabbix/2.0/debian/",
-                                $zabbix_repo_sections_param=[ "main", "contrib","non-free"],
-                                $zabbix_repo_file_param="/etc/apt/sources.list.d/zabbix_repo.list"
-) inherits puppet-zabbix::base {
-	# Include priority classes
+class puppet-zabbix::agent(
+	$zabbix_servers,
+	$zabbix_pkg_version='present',
+	$zabbix_config_logfile='/var/log/zabbix/zabbix_agentd.log',
+	$zabbix_config_logfilesize=0,
+	$zabbix_config_enableremotecommands=0,
+) inherits puppet-zabbix::settings {
+
+	# Class relationship
 	Class["puppet-zabbix::settings"]->
-	Class["puppet-zabbix::base"]->
 	Class["puppet-zabbix::agent"]	
+
 
 	# this->specific
 	if ( $support_os_agent ) {
@@ -40,7 +41,7 @@ class puppet-zabbix::agent(	$zabbix_servers,
 
 		}
 		if ($have_distro) {
-			puppet-zabbix::base::package_installer { $packages: } ->
+			puppet-zabbix::functions::package_installer { $packages: version => $puppet_pkg_version } ->
 
 			file {$zabbix_agentd_cfg:
 				owner	=> $zabbix_agentd_cfg_owner,

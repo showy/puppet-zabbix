@@ -1,25 +1,15 @@
-class puppet-zabbix::base(	$zabbix_agent_version='latest',
-				$zabbix_repo_key_param="http://repo.zabbix.com/zabbix-official-repo.key",
-                                $zabbix_repo_url_param="http://repo.zabbix.com/zabbix/2.0/debian/",
-                                $zabbix_repo_sections_param=[ "main", "contrib","non-free"],
-                                $zabbix_repo_file_param="/etc/apt/sources.list.d/zabbix_repo.list"
+class puppet-zabbix::base(
+	$zabbix_agent_version='latest',
+	$zabbix_repo_key="http://repo.zabbix.com/zabbix-official-repo.key",
+	$zabbix_repo_url="http://repo.zabbix.com/zabbix/2.0/debian/",
+	$zabbix_repo_sections=[ "main", "contrib","non-free"],
+	$zabbix_repo_file="/etc/apt/sources.list.d/zabbix_repo.list"
 ) inherits puppet-zabbix::settings {
-	# Ordering
+
+	# Establish relationships
 	Class["puppet-zabbix::settings"] -> Class["puppet-zabbix::base"]
 
-	define package_installer(){
-		if (!defined(Package[$name])) {
-			if ($name == 'zabbix-agent-noop') {
-				package { $name:
-					ensure => $zabbix_agent_version,
-				}
-			} else {
-				package { "$name":
-					ensure => present,
-				}
-			}
-		}
-	}
+
 	# this->specific
 	if ($support){
 		case $operatingsystem {
@@ -33,7 +23,7 @@ class puppet-zabbix::base(	$zabbix_agent_version='latest',
 			}
 		}
 
-		package_installer {$packages:} 
+		puppet-zabbix::functions::package_installer {$packages:} 
 
 		file { $zabbix_repo_file:
 			owner	=> "root",
@@ -43,7 +33,7 @@ class puppet-zabbix::base(	$zabbix_agent_version='latest',
 			replace	=> true,
 			ensure	=> present,
 			require	=> Package[$packages] 
-		} ->
+		} ~>
 
 		exec { "curl ${zabbix_repo_key} | apt-key add -":
 			unless	=> "apt-key list | grep -i zabbix",
@@ -56,5 +46,7 @@ class puppet-zabbix::base(	$zabbix_agent_version='latest',
 			refreshonly	=> true,
 		}
 
-	}	
+	} else {
+		notify { "Operatingsystem/Distribution not supported": }
+	}
 }
