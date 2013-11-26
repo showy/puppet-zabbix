@@ -1,0 +1,10 @@
+name 'puppet-zabbix'
+version '0.0.1'
+source 'git://github.com/showy/puppet-zabbix.git'
+author 'ShOwY'
+description 'Zabbix components installation'
+summary 'Zabbix components installation'
+license ''
+project_page 'https://github.com/showy/puppet-zabbix'
+
+dependency 'puppetlabs/stdlib', '>=3.2.0 <5.0.0'

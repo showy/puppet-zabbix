@@ -1,0 +1,18 @@
+<?php
+// Zabbix GUI configuration file
+global $DB;
+
+$DB["TYPE"]                     = '<%= @zabbix_frontend_conf_php_dbtype %>';
+$DB["SERVER"]                   = '<%= @zabbix_frontend_conf_php_dbserver %>';
+$DB["PORT"]                     = '<%= @zabbix_frontend_conf_php_server_port %>';
+$DB["DATABASE"]                 = '<%= @zabbix_frontend_conf_php_db %>';
+$DB["USER"]                     = '<%= @zabbix_frontend_conf_php_dbuser %>';
+$DB["PASSWORD"]                 = '<%= @zabbix_frontend_conf_php_dbpass %>';
+$DB["SCHEMA"]                   = '';
+
+$ZBX_SERVER                     = '<%= @zabbix_frontend_conf_php_zbxserver %>';
+$ZBX_SERVER_PORT                = '<%= @zabbix_frontend_conf_php_zbxserver_port %>';
+$ZBX_SERVER_NAME                = '';
+
+$IMAGE_FORMAT_DEFAULT   = IMAGE_FORMAT_PNG;
+?>

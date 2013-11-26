@@ -1,0 +1,60 @@
+<% if @zabbix_file_headers -%>
+<%= @zabbix_file_headers %>
+<% elsif @file_headers -%>
+<%= @file_headers %>
+<% end -%>
+
+# Define /zabbix alias, this is the default
+<IfModule mod_alias.c>
+    Alias /<%= @zabbix_frontend_apache_conf_alias %> <%= @zabbix_frontend_apache_conf_rootdir %>
+</IfModule>
+
+<Directory "<%= @zabbix_frontend_apache_conf_rootdir %>">
+    Options FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+
+    php_value max_execution_time <%= @zabbix_php_max_execution_time %>
+    php_value memory_limit <%= @zabbix_php_memory_limit %>
+    php_value post_max_size <%= @zabbix_php_post_max_size %>
+    php_value upload_max_filesize <%= @zabbix_php_upload_max_filesize %>
+    php_value max_input_time <%= @zabbix_php_max_input_time %>
+    php_value date.timezone <%= @zabbix_php_timezone %>
+</Directory>
+
+<Directory "<%= @zabbix_frontend_apache_conf_rootdir %>/conf">
+    Order deny,allow
+    Deny from all
+    <files *.php>
+        Order deny,allow
+        Deny from all
+    </files>
+</Directory>
+
+<Directory "<%= @zabbix_frontend_apache_conf_rootdir %>/api">
+    Order deny,allow
+    Deny from all
+    <files *.php>
+        Order deny,allow
+        Deny from all
+    </files>
+</Directory>
+
+<Directory "<%= @zabbix_frontend_apache_conf_rootdir %>/include">
+    Order deny,allow
+    Deny from all
+    <files *.php>
+        Order deny,allow
+        Deny from all
+    </files>
+</Directory>
+
+<Directory "<%= @zabbix_frontend_apache_conf_rootdir %>/include/classes">
+    Order deny,allow
+    Deny from all
+    <files *.php>
+        Order deny,allow
+        Deny from all
+    </files>
+</Directory>

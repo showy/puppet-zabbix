@@ -2,7 +2,7 @@ class puppet-zabbix::functions {
 	
 	define package_installer($version=undef){
 		if (!defined(Package[$name])) {
-			if (defined($version)) {
+			if (!empty($version)) {
 				package { $name:
 					ensure => $version,
 				}
