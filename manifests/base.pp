@@ -15,7 +15,7 @@ class puppet-zabbix::base(
 		case $operatingsystem {
 			/(?i:debian)/: {
 				case $lsbdistcodename {
-					/(?i:wheezy|squeeze)/: {
+					/(?i:wheezy|squeeze|sid)/: {
 						$packages = [ "curl"] # This package list is required by resources in this file
 						$zabbix_repo_file_erb = "debian_repo_file.erb"
 					}

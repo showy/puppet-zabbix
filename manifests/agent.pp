@@ -1,7 +1,7 @@
 class puppet-zabbix::agent(
 	$zabbix_servers,
-	$zabbix_pkg_version='present',
-	$zabbix_config_logfile='/var/log/zabbix/zabbix_agentd.log',
+	$zabbix_pkg_version = 'present',
+	$zabbix_config_logfile = '',
 	$zabbix_config_logfilesize=0,
 	$zabbix_config_enableremotecommands=0,
 ) inherits puppet-zabbix::settings {
@@ -41,7 +41,7 @@ class puppet-zabbix::agent(
 
 		}
 		if ($have_distro) {
-			puppet-zabbix::functions::package_installer { $packages: version => $puppet_pkg_version } ->
+			puppet-zabbix::functions::package_installer { $packages: version => $zabbix_pkg_version } ->
 
 			file {$zabbix_agentd_cfg:
 				owner	=> $zabbix_agentd_cfg_owner,

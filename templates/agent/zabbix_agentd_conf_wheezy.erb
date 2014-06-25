@@ -26,7 +26,9 @@ PidFile=/var/run/zabbix/zabbix_agentd.pid
 # Default:
 # LogFile=
 
+<% if @zabbix_config_logfile.kind_of?(String) and @zabbix_config_logfile.size > 1 -%>
 LogFile=<%= @zabbix_config_logfile %>
+<% end -%>
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.
